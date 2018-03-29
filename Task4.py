@@ -4,30 +4,22 @@
 """
 import csv
 
-give_texts=[]
-give_calls=set([])
-resive_texts=set([])
-resive_calls=set([])
-
 with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
     texts = list(reader)
-    give_texts = [x[0] for x in texts]
-    resive_texts = [x[1] for x in texts]
 
 with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
-    give_calls = [x[0] for x in calls]
-    resive_calls = [x[1] for x in calls]
 
-all_give=set(give_texts) | set(give_calls)
-all_resive= set(resive_texts) | set(resive_calls)
+give_calls = [x[0] for x in calls]
+# 析构数组，sum展开数组求和
+impossible_calls = sum([[x[0], x[1]] for x in texts], []) + [x[1] for x in calls]
+telemarketers = sorted(set(give_calls) - set(impossible_calls))
 
-result=all_give - all_resive
-print('hese numbers could be telemarketers: ')
-for item in sorted(result):
-	print(item)
+print("These numbers could be telemarketers: ")
+for x in telemarketers:
+    print(x)
 
 
 """
