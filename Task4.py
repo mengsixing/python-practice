@@ -4,40 +4,28 @@
 """
 import csv
 
-giveTexts=set([])
-givecalls=set([])
-
-resiveTexts=set([])
-resiveCalls=set([])
-
-
+give_texts=[]
+give_calls=set([])
+resive_texts=set([])
+resive_calls=set([])
 
 with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
     texts = list(reader)
-    for text in texts:
-    	if text[0] not in giveTexts:
-    		giveTexts.add(text[0])
-    	if text[1] not in resiveTexts:
-    		resiveTexts.add(text[1])
-
+    give_texts = [x[0] for x in texts]
+    resive_texts = [x[1] for x in texts]
 
 with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
-    for call in calls:
-    	if call[0] not in givecalls:
-    		givecalls.add(call[0])
-    	if call[1] not in resiveCalls:
-    		resiveCalls.add(call[1])
+    give_calls = [x[0] for x in calls]
+    resive_calls = [x[1] for x in calls]
 
-allGive=giveTexts | givecalls;
-allResive=resiveTexts | resiveCalls;
+all_give=set(give_texts) | set(give_calls)
+all_resive= set(resive_texts) | set(resive_calls)
 
-result=allGive - allResive
-
+result=all_give - all_resive
 print('hese numbers could be telemarketers: ')
-
 for item in sorted(result):
 	print(item)
 
