@@ -4,13 +4,43 @@
 """
 import csv
 
+giveTexts=set([])
+givecalls=set([])
+
+resiveTexts=set([])
+resiveCalls=set([])
+
+
+
 with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
     texts = list(reader)
+    for text in texts:
+    	if text[0] not in giveTexts:
+    		giveTexts.add(text[0])
+    	if text[1] not in resiveTexts:
+    		resiveTexts.add(text[1])
+
 
 with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
+    for call in calls:
+    	if call[0] not in givecalls:
+    		givecalls.add(call[0])
+    	if call[1] not in resiveCalls:
+    		resiveCalls.add(call[1])
+
+allGive=giveTexts | givecalls;
+allResive=resiveTexts | resiveCalls;
+
+result=allGive - allResive
+
+print('hese numbers could be telemarketers: ')
+
+for item in sorted(result):
+	print(item)
+
 
 """
 任务4:

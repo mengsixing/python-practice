@@ -23,7 +23,7 @@ with open('calls.csv', 'r') as f:
         if call[1] not in countArray:
             countArray.add(call[1])
 
-print('There are <{}> different telephone numbers in the records.'.format(len(countArray)))
+print('There are {} different telephone numbers in the records.'.format(len(countArray)))
 """
 任务1：
 短信和通话记录中一共有多少电话号码？每个号码只统计一次。

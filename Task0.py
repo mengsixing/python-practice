@@ -7,13 +7,13 @@ with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
     texts = list(reader)
     firstText=texts[0];
-    print('First record of texts, <{}> texts <{}> at time <{}>'.format(firstText[0],firstText[1],firstText[2]))
+    print('First record of texts, {} texts {} at time {}'.format(firstText[0],firstText[1],firstText[2]))
 
 with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
     lastCall=calls[-1]
-    print('Last record of calls, <{}> calls <{}> at time <{}>, lasting <{}> seconds'.format(lastCall[0],lastCall[1],lastCall[2],lastCall[3]))
+    print('Last record of calls, {} calls {} at time {}> lasting {} seconds'.format(lastCall[0],lastCall[1],lastCall[2],lastCall[3]))
 
 
 """

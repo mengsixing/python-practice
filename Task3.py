@@ -3,14 +3,34 @@
 你将在以后的课程中了解更多有关读取文件的知识。
 """
 import csv
-
-with open('texts.csv', 'r') as f:
-    reader = csv.reader(f)
-    texts = list(reader)
-
+calledArray= set([])
 with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
+    for call in calls:
+    	if call[0][:5]=='(080)':
+    		if call[1] not in calledArray:
+    			arrindex=call[1].find(')')
+    			spaceIndex=call[1].find(' ')
+    			if arrindex >0:
+    				calledArray.add(call[1][1:arrindex])
+    			if spaceIndex >0:
+    				calledArray.add(call[1][0:spaceIndex-1])
+print('The numbers called by people in Bangalore have codes:')
+for item in sorted(calledArray):
+	print(item)
+
+# 第二部分
+
+allcount= len(calledArray)
+bangaloreCount=0;
+for item in calledArray:
+	if item=='080':
+		bangaloreCount+=1;
+bangaloreProportion= round(bangaloreCount/allcount *100,2);
+
+
+print('{} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.'.format(bangaloreProportion))
 
 """
 任务3:
